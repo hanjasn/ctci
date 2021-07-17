@@ -15,12 +15,14 @@ class Solution1:
       return
 
     s = set()
-    while head.next != None:
-      if head.next.data in s:
-        head.next = head.next.next
+    node = Node(0)
+    node.next = head
+    while node.next != None:
+      if node.next.data in s:
+        node.next = node.next.next
       else:
-        s.add(head.data)
-        head = head.next
+        s.add(node.next.data)
+        node = node.next
 
 # Time: O(n*logn)
 # Space: O(n)
