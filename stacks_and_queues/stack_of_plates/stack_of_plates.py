@@ -34,7 +34,7 @@ class SetOfStacks:
     
     data = self.peek()
     self.get_last_stack().pop()
-    if self.get_last_stack().is_empty():
+    if self.get_last_stack().empty():
       self.stacks.pop()
     return data
   

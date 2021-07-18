@@ -20,17 +20,17 @@ class Queue:
     self.end.push(data)
 
   def remove(self) -> T:
-    if self.front.is_empty():
+    if self.front.empty():
       self.move_to_front()
     return self.front.pop()
 
   def peek(self) -> T:
-    if self.front.is_empty():
+    if self.front.empty():
       self.move_to_front()
     return self.front.peek()
 
   def is_empty(self) -> bool:
-    return self.front.is_empty() and self.end.is_empty()
+    return self.front.empty() and self.end.empty()
   
   def move_to_front(self) -> None:
     while self.end.peek():
@@ -39,7 +39,7 @@ class Queue:
   def print_values(self) -> str:
     result = ""
     node = self.front.top
-    if self.end.is_empty():
+    if self.end.empty():
       while node:
         if node.next == None:
           result += str(node.data)
