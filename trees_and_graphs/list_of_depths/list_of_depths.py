@@ -24,28 +24,23 @@ class SolutionDFS:
     if node == None:
       return
     
-    if len(lists) <= depth:
+    if len(lists) == depth:
       lists.append(LinkedList())
-    lists[depth].add(node.data)
+    lists[depth].add(node)
     self._list_of_depths(node.left, lists, depth + 1)
     self._list_of_depths(node.right, lists, depth + 1)
-
+  
 
 # Time: O(n)
 # Space: O(n)
 class SolutionBFS:
-  def list_of_depths(self, node: BinaryTreeNode) -> list:    
+  def list_of_depths(self, node: BinaryTreeNode) -> list:
     lists = []
     if node != None:
       current = LinkedList()
       current.add(node)
       while current.get_size() > 0:
-        data_list = LinkedList()
-        c = current.head
-        while c != None:
-          data_list.add(c.data.data)
-          c = c.next
-        lists.append(data_list)
+        lists.append(current)
 
         parents = current
         current = LinkedList()
