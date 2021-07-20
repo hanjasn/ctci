@@ -1,9 +1,22 @@
+"""
+Successor
+
+Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a binary search tree. You may assume that
+each node has a link to its parent.
+"""
 from typing import TypeVar
 
 
 T = TypeVar('T')
 
 
+# Time: O(logn) when balanced
+# Space: O(1)
+# Iterative solution
+# 
+# Time: O(logn) when balanced
+# Space: O(logn) when balanced
+# Recursive solution
 class BinaryTreeNode:
   def __init__(self, data: T) -> None:
     self.data = data
@@ -39,6 +52,41 @@ class BinaryTreeNode:
     if found != None:
       return found
     return self._find(node.right, data)
+  
+  def successor(self) -> 'BinaryTreeNode':
+    if self.right != None:
+      return self.right.find_min()
+
+    node = self
+    while node.parent != None:
+      if node == node.parent.left:
+        return node.parent
+      node = node.parent
+    return None
+
+  # Recursive solution
+  # def _successor(self) -> 'BinaryTreeNode':
+  #   if self.parent != None:
+  #     if self == self.parent.left:
+  #       return self.parent
+  #     return self.parent._successor()
+  #   return None
+  
+  def find_min(self) -> 'BinaryTreeNode':
+    node = self
+    while node.left != None:
+      node = node.left
+    return node
+
+  # Recursive solution
+  # def find_min(self) -> 'BinaryTreeNode':
+  #   return self._find_min(self)
+  
+  # def _find_min(self, node: 'BinaryTreeNode') -> 'BinaryTreeNode':
+  #   if node.left == None:
+  #     return node
+    
+  #   return self._find_min(node.left)
   
   def get_size(self):
     return self.size
