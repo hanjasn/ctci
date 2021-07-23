@@ -16,26 +16,29 @@ pale,  bake -> false
 # If the string lengths are equal, check for number of replacements needed. If the difference in string lengths is one, count
 # the number of times each letter appears for each string separately in hash tables, and then count the number of letters that
 # have different counts. If the differece in string lengths is greater than one, then return false.
-class Solution:    
-  def is_one_away(self, s1, s2):
+class Solution:
+  def is_one_away(self, string1: str, string2: str) -> bool:
+    length_diff = abs(len(string1) - len(string2))
+    if length_diff > 1:
+      return False
+
     count_diff = 0
-    if len(s1) == len(s2):
-      for i in range(len(s1)):
-        if s1[i] != s2[i]:
-          count_diff += 1
-          if count_diff > 1:
-            return False
-    elif abs(len(s1) - len(s2)) == 1:
-      char_count_1, char_count_2 = [0] * 128, [0] * 128
-      for char in s1:
-        char_count_1[ord(char)] += 1
-      for char in s2:
-        char_count_2[ord(char)] += 1
-      for i in range(128):
-        if char_count_1[i] != char_count_2[i]:
+    if length_diff == 1:
+      freq_table_1 = [0] * 128
+      freq_table_2 = [0] * 128
+      for c in string1:
+        freq_table_1[ord(c)] += 1
+      for c in string2:
+        freq_table_2[ord(c)] += 1
+      for i in range(len(freq_table_1)):
+        if freq_table_1[i] != freq_table_2[i]:
           count_diff += 1
           if count_diff > 1:
             return False
     else:
-      return False
+      for i in range(len(string1)):
+        if string1[i] != string2[i]:
+          count_diff += 1
+          if count_diff > 1:
+            return False
     return True

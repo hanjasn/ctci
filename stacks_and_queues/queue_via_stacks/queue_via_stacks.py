@@ -15,27 +15,29 @@ class Queue:
   def __init__(self) -> None:
     self.front = Stack()
     self.end = Stack()
-
-  def add(self, data) -> None:
+  
+  def add(self, data: T) -> None:
     self.end.push(data)
 
   def remove(self) -> T:
-    if self.front.empty():
-      self.move_to_front()
+    self.shift()
     return self.front.pop()
 
   def peek(self) -> T:
-    if self.front.empty():
-      self.move_to_front()
+    self.shift()
     return self.front.peek()
+  
+  def shift(self) -> bool:
+    if self.empty() or not self.front.empty():
+      return False
+    
+    while not self.end.empty():
+      self.front.push(self.end.pop())
+    return True
 
-  def is_empty(self) -> bool:
+  def empty(self) -> bool:
     return self.front.empty() and self.end.empty()
   
-  def move_to_front(self) -> None:
-    while self.end.peek():
-      self.front.push(self.end.pop())
-
   def print_values(self) -> str:
     result = ""
     node = self.front.top

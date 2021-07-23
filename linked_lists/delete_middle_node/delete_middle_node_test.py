@@ -7,11 +7,11 @@ class Delete(unittest.TestCase):
     self.list = LinkedList()
 
   def test_1(self):
-    node_a = Node('a')
-    node_b = Node('b')
-    node_c = Node('c')
-    node_d = Node('d')
-    node_e = Node('e')
+    node_a = LinkedListNode('a')
+    node_b = LinkedListNode('b')
+    node_c = LinkedListNode('c')
+    node_d = LinkedListNode('d')
+    node_e = LinkedListNode('e')
     self.list.head = node_a
     node_a.next = node_b
     node_b.next = node_c
@@ -22,11 +22,11 @@ class Delete(unittest.TestCase):
     self.assertEqual("a, b, d, e", self.list.print_list())
   
   def test_2(self):
-    node_a = Node('a')
-    node_b = Node('b')
-    node_c = Node('c')
-    node_d = Node('d')
-    node_e = Node('e')
+    node_a = LinkedListNode('a')
+    node_b = LinkedListNode('b')
+    node_c = LinkedListNode('c')
+    node_d = LinkedListNode('d')
+    node_e = LinkedListNode('e')
     self.list.head = node_a
     node_a.next = node_b
     node_b.next = node_c

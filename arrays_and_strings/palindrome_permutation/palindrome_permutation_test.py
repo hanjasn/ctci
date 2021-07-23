@@ -16,23 +16,27 @@ class PalindromePermutationTest(unittest.TestCase):
   def test_3(self):
     str = "Wow"
     self.assertTrue(self.sol.palindrome_permutation(str))
-
+  
   def test_4(self):
-    str = "not a palindrome"
-    self.assertFalse(self.sol.palindrome_permutation(str))
-
-  def test_4(self):
-    str = ""
+    str = "No lemon, no melon"
     self.assertTrue(self.sol.palindrome_permutation(str))
 
   def test_5(self):
+    str = "not a palindrome"
+    self.assertFalse(self.sol.palindrome_permutation(str))
+
+  def test_6(self):
+    str = ""
+    self.assertTrue(self.sol.palindrome_permutation(str))
+
+  def test_7(self):
     str = " "
     self.assertTrue(self.sol.palindrome_permutation(str))
 
-  def test_6(self):
+  def test_8(self):
     try:
       str = None
       self.sol.palindrome_permutation(str)
       assert False
-    except AttributeError:
+    except Exception:
       assert True

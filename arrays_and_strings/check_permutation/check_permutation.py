@@ -4,6 +4,7 @@ Check Permutation
 Given two strings, write a method to decide if one is a permutation of the other.
 """
 
+
 # Time: O(n)
 # Space: O(1)
 # Assume case sensitive, and whitespace counts
@@ -12,6 +13,7 @@ class Solution1:
   def check_permutation(self, s1, s2):
     if len(s1) != len(s2):
       return False
+    
     chars = [0] * 128
     for c in s1:
       chars[ord(c)] += 1
@@ -20,6 +22,7 @@ class Solution1:
       if chars[ord(c)] < 0:
         return False
     return True
+
 
 # Time: O(n*logn)
 # Space: O(logn)

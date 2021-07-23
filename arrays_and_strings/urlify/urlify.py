@@ -10,25 +10,28 @@ Input:  "Mr John Smith    ", 13
 Output: "Mr%20John%20Smith"
 """
 
+
 # Time: O(n)
 # Space: O(n)
 # Count spaces to find resulting length, and then loop backwards from original string and replace characters one by one from
 # end of resulting string
 class Solution:
-  def urlify(self, s, length):
-    s_list = list(s)
-    num_spaces = 0
+  def urlify(self, string: str, length: int) -> str:
+    space_count = 0
     for i in range(length):
-      if s_list[i] == " ":
-        num_spaces += 1
-    new_length = length + num_spaces * 2
+      if string[i] == " ":
+        space_count += 1
+    
+    new_length = length + space_count * 2
+    string_arr = list(string)
     for i in range(length - 1, -1, -1):
-      if s_list[i] == " ":
-        s_list[new_length - 1] = "0"
-        s_list[new_length - 2] = "2"
-        s_list[new_length - 3] = "%"
+      if string_arr[i] == " ":
+        string_arr[new_length - 1] = "0"
+        string_arr[new_length - 2] = "2"
+        string_arr[new_length - 3] = "%"
         new_length -= 3
       else:
-        s_list[new_length - 1] = s_list[i]
+        string_arr[new_length - 1] = string_arr[i]
         new_length -= 1
-    return ''.join(s_list)
+    
+    return ''.join(string_arr)

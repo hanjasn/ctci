@@ -19,7 +19,6 @@ class Stack:
     
     data = self.peek()
     self.top = self.top.next
-    
     return data
 
   def peek(self) -> T:
@@ -33,6 +32,6 @@ class Stack:
 
 
 class _Node:
-  def __init__(self, data) -> None:
+  def __init__(self, data: T) -> None:
     self.data = data
     self.next = None

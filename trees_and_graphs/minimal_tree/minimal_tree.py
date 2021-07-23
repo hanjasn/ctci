@@ -14,15 +14,15 @@ from binary_tree import BinaryTreeNode
 class Solution:
   def build_BST(self, arr: list) -> BinaryTreeNode:
     return self._build_BST(arr, 0, len(arr) - 1)
-  
+
   def _build_BST(self, arr: list, left: int, right: int) -> BinaryTreeNode:
+    if left > right:
+      return None
     if left == right:
       return BinaryTreeNode(arr[left])
-    elif right < left:
-      return None
     
     mid = (left + right)//2
     node = BinaryTreeNode(arr[mid])
-    node.left = self._build_BST(arr, left, mid - 1)
-    node.right = self._build_BST(arr, mid + 1, right)
+    node.set_left(self._build_BST(arr, left, mid - 1))
+    node.set_right(self._build_BST(arr, mid + 1, right))
     return node

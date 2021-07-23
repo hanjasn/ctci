@@ -6,29 +6,28 @@ allowed?
 """
 from linked_list import *
 
+
 # Time: O(n)
 # Space: O(n - m) where m represents all duplicates
 # Iterate through list while using set to check for duplicates
 class Solution1:
-  def remove_dups(self, head: Node) -> None:
-    if head == None:
-      return
-
-    s = set()
-    node = Node(0)
+  def remove_dups(self, head: LinkedListNode) -> None:
+    seen = set()
+    node = LinkedListNode(0)
     node.next = head
     while node.next != None:
-      if node.next.data in s:
+      if node.next.data in seen:
         node.next = node.next.next
       else:
-        s.add(node.next.data)
+        seen.add(node.next.data)
         node = node.next
+
 
 # Time: O(n*logn)
 # Space: O(n)
 # Sort, then check adjacent elements for duplicates
 class Solution2:
-  def remove_dups(self, head: Node) -> None:
+  def remove_dups(self, head: LinkedListNode) -> None:
     if head == None:
       return
 
@@ -39,7 +38,7 @@ class Solution2:
       else:
         head = head.next
 
-  def merge_sort(self, head: Node) -> None:
+  def merge_sort(self, head: LinkedListNode) -> None:
     arr = []
     node = head
     while node != None:
@@ -85,7 +84,7 @@ class Solution2:
 # Space: O(1)
 # Runner technique
 class Solution3:
-  def remove_dups(self, head: Node) -> None:
+  def remove_dups(self, head: LinkedListNode) -> None:
     while head != None:
       runner = head
       while runner.next != None:

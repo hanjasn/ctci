@@ -9,6 +9,8 @@ from typing import TypeVar
 
 
 T = TypeVar('T')
+
+
 # Time: O(n^2) for sort()
 # Space: O(n) for sort()
 class Stack:
@@ -18,35 +20,37 @@ class Stack:
   
   def push(self, data: T) -> None:
     self.size += 1
+
     node = _Node(data)
     node.next = self.top
     self.top = node
 
   def pop(self) -> T:
-    if self.is_empty():
+    if self.empty():
       return None
     
     self.size -= 1
+
     data = self.peek()
     self.top = self.top.next
     return data
-    
+
   def sort(self) -> None:
     if self.size <= 1:
       return
-    
-    sorted = Stack()
-    while not self.is_empty():
+
+    sorted_stack = Stack()
+    while not self.empty():
       temp = self.pop()
-      while not sorted.is_empty() and temp < sorted.peek():
-        self.push(sorted.pop())
-      sorted.push(temp)
+      while not sorted_stack.empty() and temp < sorted_stack.peek():
+        self.push(sorted_stack.pop())
+      sorted_stack.push(temp)
     
-    while not sorted.is_empty():
-      self.push(sorted.pop())
+    while not sorted_stack.empty():
+      self.push(sorted_stack.pop())
 
   def peek(self) -> T:
-    if self.is_empty():
+    if self.empty():
       return None
     
     return self.top.data
@@ -54,7 +58,7 @@ class Stack:
   def get_size(self) -> int:
     return self.size
 
-  def is_empty(self) -> bool:
+  def empty(self) -> bool:
     return self.top == None
   
   def print_values(self) -> str:

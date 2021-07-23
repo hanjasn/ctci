@@ -10,29 +10,26 @@ Input:  Tact Coa
 Output: True (permutations: "taco cat", "atco cta", etc.)
 """
 
+
 # Time: O(n)
 # Space: O(n)
-# Assume case insensitive, whitespace insignificant, no punctuation
 # Count number of times each letter appears in string and store result in hash table, and then check that at most one letter
 # has an odd count.
 class Solution:
-  def palindrome_permutation(self, s):
-    letters = self.count_letter_freq(s)
-    return self.has_max_one_odd(letters)
-  
-  def count_letter_freq(self, s):
-    arr = list(s.lower())
-    letters = [0] * 26
-    for c in arr:
+  def palindrome_permutation(self, string: str) -> bool:
+    if len(string) <= 2:
+      return True
+    
+    lower_string = string.lower()
+    freq_table = [0] * 26
+    for c in lower_string:
       if ord('a') <= ord(c) <= ord('z'):
-        letters[ord(c) - ord('a')] += 1
-    return letters
-  
-  def has_max_one_odd(self, letters):
-    count_odd = 0
-    for count in letters:
-      if count != 0 and count % 2 != 0:
-        count_odd += 1
-        if count_odd > 1:
+        freq_table[ord(c) - ord('a')] += 1
+    
+    odd_count = 0
+    for f in freq_table:
+      if f != 0 and f % 2 == 1:
+        odd_count += 1
+        if odd_count > 1:
           return False
     return True

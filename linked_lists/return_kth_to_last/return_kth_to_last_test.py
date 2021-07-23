@@ -7,22 +7,22 @@ class FindKthLastElement(unittest.TestCase):
     self.list = LinkedList()
 
   def test_1(self) -> None:
-    self.list.push(5)
-    self.list.push(4)
-    self.list.push(3)
-    self.list.push(2)
-    self.list.push(1)
+    self.list.add(5)
+    self.list.add(4)
+    self.list.add(3)
+    self.list.add(2)
+    self.list.add(1)
     k = 1
     self.assertEqual(4, self.sol.find_kth_last_element(self.list.head, k).data)
   
   # Invalid test for Solution2
   def test_2(self) -> None:
     try:
-      self.list.push(5)
-      self.list.push(4)
-      self.list.push(3)
-      self.list.push(2)
-      self.list.push(1)
+      self.list.add(5)
+      self.list.add(4)
+      self.list.add(3)
+      self.list.add(2)
+      self.list.add(1)
       k = 5
       self.sol.find_kth_last_element(self.list.head, k)
       assert False
@@ -45,21 +45,21 @@ class PrintKthLastElement(unittest.TestCase):
 
   # Print 4
   def test_1(self):
-    self.list.push(5)
-    self.list.push(4)
-    self.list.push(3)
-    self.list.push(2)
-    self.list.push(1)
+    self.list.add(5)
+    self.list.add(4)
+    self.list.add(3)
+    self.list.add(2)
+    self.list.add(1)
     k = 1
     self.sol.print_kth_last_element(self.list.head, k)
   
   # Print nothing
   def test_2(self):
-    self.list.push(5)
-    self.list.push(4)
-    self.list.push(3)
-    self.list.push(2)
-    self.list.push(1)
+    self.list.add(5)
+    self.list.add(4)
+    self.list.add(3)
+    self.list.add(2)
+    self.list.add(1)
     k = 5
     self.sol.print_kth_last_element(self.list.head, k)
   

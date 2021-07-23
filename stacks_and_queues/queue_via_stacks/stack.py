@@ -14,7 +14,7 @@ class Stack:
     self.top = node
 
   def pop(self) -> T:
-    if self.is_empty():
+    if self.empty():
       return None
 
     data = self.peek()
@@ -22,12 +22,12 @@ class Stack:
     return data
 
   def peek(self) -> T:
-    if self.is_empty():
+    if self.empty():
       return None
     
     return self.top.data
 
-  def is_empty(self) -> bool:
+  def empty(self) -> bool:
     return self.top == None
 
 

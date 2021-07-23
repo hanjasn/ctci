@@ -3,7 +3,7 @@ from is_unique import *
 
 class IsUniqueTest(unittest.TestCase):
   def setUp(self):
-    self.sol1 = Solution1()
+    self.sol1 = Solution2()
 
   def test_1(self):
     str = "abc"

@@ -32,16 +32,16 @@ class QueueTest(unittest.TestCase):
     self.assertEqual("4, 5", self.queue.print_values())
 
   def test_4(self) -> None:
-    self.assertTrue(self.queue.is_empty())
+    self.assertTrue(self.queue.empty())
   
   def test_5(self) -> None:
     self.queue.add(1)
-    self.assertFalse(self.queue.is_empty())
+    self.assertFalse(self.queue.empty())
   
   def test_6(self) -> None:
     self.queue.add(1)
     self.queue.remove()
-    self.assertTrue(self.queue.is_empty())
+    self.assertTrue(self.queue.empty())
   
   def test_7(self) -> None:
     self.assertEqual(None, self.queue.peek())

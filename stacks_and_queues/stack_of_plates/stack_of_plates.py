@@ -24,50 +24,49 @@ class SetOfStacks:
     self.capacity = capacity
   
   def push(self, data: T) -> None:
-    if self.is_empty() or self.is_last_stack_full():
+    if self.last_stack_full():
       self.stacks.append(Stack())
-    self.get_last_stack().push(data)
+    self.last_stack().push(data)
 
   def pop(self) -> T:
-    if self.is_empty():
+    if self.empty():
       return None
-    
-    data = self.peek()
-    self.get_last_stack().pop()
-    if self.get_last_stack().empty():
+
+    data = self.last_stack().pop()
+    if self.last_stack().empty():
       self.stacks.pop()
     return data
   
   def pop_at(self, index: int) -> T:
-    if self.is_empty() or index == len(self.stacks) - 1:
+    if self.empty() or index == len(self.stacks) - 1:
       return self.pop()
-
-    data = self.stacks[index].peek()
-    self.stacks[index].pop()
+    if index < 0 or index >= len(self.stacks):
+      return None
+    
+    data = self.stacks[index].pop()
 
     for i in range(index, len(self.stacks) - 1):
       bottom = self.stacks[i + 1].remove_bottom()
       self.stacks[i].push(bottom)
-
     return data
-  
-  def peek(self) -> T:
-    return self.get_last_stack().peek()
 
-  def is_empty(self) -> bool:
+  def peek(self) -> T:
+    if self.empty():
+      return None
+    
+    return self.last_stack().peek()
+
+  def empty(self) -> bool:
     return len(self.stacks) == 0
   
-  def is_last_stack_full(self) -> bool:
-    if self.is_empty():
-      return False
-
-    return self.get_last_stack().get_size() == self.capacity
-  
-  def get_last_stack(self) -> Stack:
-    if self.is_empty():
+  def last_stack(self) -> Stack:
+    if self.empty():
       return None
-
+    
     return self.stacks[-1]
+  
+  def last_stack_full(self) -> bool:
+    return self.empty() or self.last_stack().get_size() == self.capacity
 
   def print_values(self) -> str:
     result = ""

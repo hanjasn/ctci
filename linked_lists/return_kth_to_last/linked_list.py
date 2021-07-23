@@ -2,8 +2,8 @@ class LinkedList:
   def __init__(self):
     self.head = None
   
-  def push(self, data):
-    node = Node(data)
+  def add(self, data):
+    node = LinkedListNode(data)
     node.next = self.head
     self.head = node
 
@@ -19,7 +19,7 @@ class LinkedList:
     return result
 
 
-class Node:
+class LinkedListNode:
   def __init__(self, data):
     self.data = data
     self.next = None

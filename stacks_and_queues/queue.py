@@ -6,39 +6,39 @@ T = TypeVar('T')
 
 class Queue:
   def __init__(self) -> None:
-    self.first = None
-    self.last = None
+    self.front = None
+    self.end = None
   
   def add(self, data: T) -> None:
     node = _Node(data)
-    if self.last:
-      self.last.next = node
-    self.last = node
-    if self.first == None:
-      self.first = self.last
+    if self.end:
+      self.end.next = node
+    self.end = node
+
+    if self.front == None:
+      self.front = self.end
 
   def remove(self) -> T:
     if self.empty():
       return None
     
-    data = self.first.data
-    self.first = self.first.next
-    if self.first == None:
-      self.last = None
-
+    data = self.peek()
+    self.front = self.front.next
+    if self.front == None:
+      self.end = None
     return data
 
   def peek(self) -> T:
     if self.empty():
       return None
     
-    return self.first.data
+    return self.front.data
 
   def empty(self) -> bool:
-    return self.first == None
+    return self.front == None
 
 
 class _Node:
-  def __init__(self, data) -> None:
+  def __init__(self, data: T) -> None:
     self.data = data
     self.next = None

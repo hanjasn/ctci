@@ -4,8 +4,8 @@ from stack_of_plates import *
 
 class SetOfStacksTest(unittest.TestCase):
   def setUp(self) -> None:
-    limit = 3
-    self.stacks = SetOfStacks(limit)
+    capacity = 3
+    self.stacks = SetOfStacks(capacity)
   
   def test_1(self) -> None:
     self.stacks.push(0)

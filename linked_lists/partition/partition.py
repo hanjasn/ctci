@@ -14,13 +14,14 @@ from linked_list import *
 
 # Time: O(n)
 # Space: O(1)
+# Stable solution
 # Create two new linked lists with the smaller and larger nodes, and then merge them together, making sure to remove any loops
 # and dummy nodes.
 class Solution1:
-  def partition(self, head: Node, partition: int) -> Node:
-    before = before_head = Node(0)
-    after = after_head = Node(0)
-    while head:
+  def partition(self, head: LinkedListNode, partition: int) -> LinkedListNode:
+    before = before_head = LinkedListNode(0)
+    after = after_head = LinkedListNode(0)
+    while head != None:
       if head.data < partition:
         before.next = head
         before = before.next
@@ -36,12 +37,13 @@ class Solution1:
 
 # Time: O(n)
 # Space: O(1)
+# Unstable solution
 # Copy the data of nodes lower than partition to array and then reappend them as new nodes to the head of the list in reverse
 # order.
 class Solution2:
-  def partition(self, head: Node, partition: int) -> Node:
+  def partition(self, head: LinkedListNode, partition: int) -> LinkedListNode:
     arr = []
-    node = Node(0)
+    node = LinkedListNode(0)
     node.next = head
     while node.next != None:
       if node.next.data < partition:
@@ -56,7 +58,7 @@ class Solution2:
         node = node.next
     
     for i in range(len(arr) - 1, -1, -1):
-      node = Node(arr[i])
+      node = LinkedListNode(arr[i])
       node.next = head
       head = node
     return head

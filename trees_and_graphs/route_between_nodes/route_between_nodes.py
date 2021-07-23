@@ -14,10 +14,12 @@ class Graph:
   def __init__(self, directed: bool=False) -> None:
     self.graph = dict()
     self.directed = directed
-  
+
   def add_vertex(self, vertex: T) -> None:
-    if vertex not in self.graph:
-      self.graph[vertex] = set()
+    if vertex in self.graph:
+      return
+    
+    self.graph[vertex] = set()
 
   def add_edge(self, vertex1: T, vertex2: T) -> None:
     if vertex1 not in self.graph:
@@ -26,7 +28,6 @@ class Graph:
       self.add_vertex(vertex2)
     
     self.graph[vertex1].add(vertex2)
-
     if not self.directed:
       self.graph[vertex2].add(vertex1)
 
@@ -47,7 +48,6 @@ class Graph:
       return
     
     self.graph[vertex1].discard(vertex2)
-
     if not self.directed:
       self.graph[vertex2].discard(vertex1)
   
@@ -58,20 +58,19 @@ class Graph:
     visited = dict()
     for vertex in self.graph:
       visited[vertex] = False
-
     queue = Queue()
     queue.put(vertex1)
+    visited[vertex1] = True
     while not queue.empty():
-      v = queue.get()
-      for child in self.graph[v]:
+      vertex = queue.get()
+      for child in self.graph[vertex]:
         if not visited[child]:
           if child == vertex2:
             return True
           visited[child] = True
           queue.put(child)
-    
     return False
-
+  
   def __str__(self) -> str:
     result = ""
     i = 1

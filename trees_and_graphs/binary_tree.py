@@ -23,11 +23,12 @@ class BinaryTreeNode:
         self.set_right(BinaryTreeNode(data))
       else:
         self.right.insert_in_order(data)
+    
     self.size += 1
-  
+
   def find(self, data: T) -> 'BinaryTreeNode':
     return self._find(self, data)
-  
+
   def _find(self, node: 'BinaryTreeNode', data: T) -> 'BinaryTreeNode':
     if node == None:
       return None
@@ -39,29 +40,32 @@ class BinaryTreeNode:
     if found != None:
       return found
     return self._find(node.right, data)
-  
-  def get_size(self):
+
+  def get_size(self) -> int:
     return self.size
   
   def set_left(self, node: 'BinaryTreeNode') -> None:
     self.left = node
     if node != None:
       node.parent = self
-  
+
   def set_right(self, node: 'BinaryTreeNode') -> None:
     self.right = node
     if node != None:
       node.parent = self
 
-  def print_in_order(self) -> str:
-    result = "[" + self._print_in_order(self)
-    result = result[0:-2] + "]"
-    return result
+  def copy_tree(self) -> list:
+    in_order = []
+    self._copy_tree(self, in_order)
+    return in_order
 
-  def _print_in_order(self, node: 'BinaryTreeNode') -> str:
-    result = ""
-    if node != None:
-      result += self._print_in_order(node.left)
-      result += str(node.data) + ", "
-      result += self._print_in_order(node.right)
-    return result
+  def _copy_tree(self, node: 'BinaryTreeNode', in_order: list) -> None:
+    if node == None:
+      return
+    
+    self._copy_tree(node.left, in_order)
+    in_order.append(node.data)
+    self._copy_tree(node.right, in_order)
+
+  def print_tree(self) -> str:
+    return str(self.copy_tree())

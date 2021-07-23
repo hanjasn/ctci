@@ -3,13 +3,13 @@ class LinkedList:
     self.head = None
     self.size = 0
   
-  def push(self, data):
-    node = Node(data)
+  def add(self, data):
+    node = LinkedListNode(data)
     node.next = self.head
     self.head = node
     self.size += 1
 
-  def size(self):
+  def get_size(self):
     return self.size
 
   def print_list(self):
@@ -24,7 +24,7 @@ class LinkedList:
     return result
 
 
-class Node:
+class LinkedListNode:
   def __init__(self, data):
     self.data = data
     self.next = None

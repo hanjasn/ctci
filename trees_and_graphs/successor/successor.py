@@ -10,12 +10,12 @@ from typing import TypeVar
 T = TypeVar('T')
 
 
-# Time: O(logn) when balanced
+# Time: O(logn) when balanced, O(n) otherwise
 # Space: O(1)
 # Iterative solution
 # 
-# Time: O(logn) when balanced
-# Space: O(logn) when balanced
+# Time: O(logn) when balanced, O(n) otherwise
+# Space: O(logn) when balanced, O(n) otherwise
 # Recursive solution
 class BinaryTreeNode:
   def __init__(self, data: T) -> None:
@@ -64,14 +64,6 @@ class BinaryTreeNode:
       node = node.parent
     return None
 
-  # Recursive solution
-  # def _successor(self) -> 'BinaryTreeNode':
-  #   if self.parent != None:
-  #     if self == self.parent.left:
-  #       return self.parent
-  #     return self.parent._successor()
-  #   return None
-  
   def find_min(self) -> 'BinaryTreeNode':
     node = self
     while node.left != None:
@@ -79,6 +71,20 @@ class BinaryTreeNode:
     return node
 
   # Recursive solution
+  # def successor(self) -> 'BinaryTreeNode':
+  #   if self.right != None:
+  #     return self.right.find_min()
+    
+  #   return self._successor(self)
+
+  # def _successor(self, node: 'BinaryTreeNode') -> 'BinaryTreeNode':
+  #   if node.parent == None:
+  #     return None
+    
+  #   if node == node.parent.left:
+  #     return node.parent
+  #   return self._successor(node.parent)
+
   # def find_min(self) -> 'BinaryTreeNode':
   #   return self._find_min(self)
   
@@ -101,15 +107,18 @@ class BinaryTreeNode:
     if node != None:
       node.parent = self
 
-  def print_in_order(self) -> str:
-    result = "[" + self._print_in_order(self)
-    result = result[0:-2] + "]"
-    return result
+  def copy_tree(self) -> list:
+    in_order = []
+    self._copy_tree(self, in_order)
+    return in_order
 
-  def _print_in_order(self, node: 'BinaryTreeNode') -> str:
-    result = ""
-    if node != None:
-      result += self._print_in_order(node.left)
-      result += str(node.data) + ", "
-      result += self._print_in_order(node.right)
-    return result
+  def _copy_tree(self, node: 'BinaryTreeNode', in_order: list) -> None:
+    if node == None:
+      return
+    
+    self._copy_tree(node.left, in_order)
+    in_order.append(node.data)
+    self._copy_tree(node.right, in_order)
+
+  def print_tree(self) -> str:
+    return str(self.copy_tree())

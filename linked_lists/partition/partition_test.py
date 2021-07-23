@@ -8,37 +8,37 @@ class PartitionTest(unittest.TestCase):
     self.list = LinkedList()
   
   def test_1(self) -> None:
-    self.list.push(1)
-    self.list.push(2)
-    self.list.push(10)
-    self.list.push(5)
-    self.list.push(8)
-    self.list.push(5)
-    self.list.push(3)
+    self.list.add(1)
+    self.list.add(2)
+    self.list.add(10)
+    self.list.add(5)
+    self.list.add(8)
+    self.list.add(5)
+    self.list.add(3)
     partition = 5
 
     self.list.head = self.sol.partition(self.list.head, partition)
     self.assertEqual("3, 2, 1, 5, 8, 5, 10", self.list.print_list())
   
   def test_2(self) -> None:
-    self.list.push(1)
-    self.list.push(1)
-    self.list.push(1)
-    self.list.push(0)
-    self.list.push(0)
-    self.list.push(0)
+    self.list.add(1)
+    self.list.add(1)
+    self.list.add(1)
+    self.list.add(0)
+    self.list.add(0)
+    self.list.add(0)
     partition = 1
 
     self.list.head = self.sol.partition(self.list.head, partition)
     self.assertEqual("0, 0, 0, 1, 1, 1", self.list.print_list())
   
   def test_3(self) -> None:
-    self.list.push(0)
-    self.list.push(0)
-    self.list.push(0)
-    self.list.push(1)
-    self.list.push(1)
-    self.list.push(1)
+    self.list.add(0)
+    self.list.add(0)
+    self.list.add(0)
+    self.list.add(1)
+    self.list.add(1)
+    self.list.add(1)
     partition = 1
 
     self.list.head = self.sol.partition(self.list.head, partition)

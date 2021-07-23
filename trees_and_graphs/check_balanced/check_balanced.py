@@ -28,38 +28,35 @@ class BinaryTreeNode:
       if self.right == None:
         self.right = BinaryTreeNode(data)
       else:
-        self.right.insert_in_order(data)  
+        self.right.insert_in_order(data)
   
-  def is_balanced(self) -> bool:
-    if self._is_balanced(self) == -2:
-      return False
-    return True
+  def balanced(self) -> bool:
+    return self._balanced(self) != -2
 
-  def _is_balanced(self, node: 'BinaryTreeNode') -> int:
+  def _balanced(self, node: 'BinaryTreeNode') -> int:
     if node == None:
       return -1
     
-    left_height = self._is_balanced(node.left)
+    left_height = self._balanced(node.left)
     if left_height == -2:
       return -2
-    
-    right_height = self._is_balanced(node.right)
+    right_height = self._balanced(node.right)
     if right_height == -2:
       return -2
     
-    diff = left_height - right_height
-    if diff < -1 or diff > 1:
+    diff = abs(left_height - right_height)
+    if diff > 1:
       return -2
     return max(left_height, right_height) + 1
   
-  # def is_balanced(self) -> bool:
-  #   return self._is_balanced(self)[0]
+  # def balanced(self) -> bool:
+  #   return self._balanced(self)[0]
 
-  # def _is_balanced(self, node: 'BinaryTreeNode') -> tuple:
+  # def _balanced(self, node: 'BinaryTreeNode') -> tuple:
   #   if node == None:
   #     return (True, -1)
     
-  #   left, right = self._is_balanced(node.left), self._is_balanced(node.right)
+  #   left, right = self._balanced(node.left), self._balanced(node.right)
   #   balanced = left[0] and right[0]
   #   diff = left[1] - right[1]
   #   if diff < -1 or diff > 1:

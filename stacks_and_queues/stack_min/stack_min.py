@@ -13,37 +13,40 @@ class Stack:
   
   def push(self, data: int) -> None:
     node = None
-    if self.is_empty() or data < self.top.min:
+    if self.empty() or data < self.min():
       node = _Node(data, data)
     else:
-      node = _Node(data, self.top.min)
+      node = _Node(data, self.min())
 
     node.next = self.top
     self.top = node
   
   def pop(self) -> int:
-    if self.is_empty():
+    if self.empty():
       return None
-    data = self.top.data
+    
+    data = self.peek()
     self.top = self.top.next
     return data
   
   def min(self) -> int:
-    if self.is_empty():
+    if self.empty():
       return None
+    
     return self.top.min
   
   def peek(self) -> int:
-    if self.is_empty():
+    if self.empty():
       return None
+    
     return self.top.data
 
-  def is_empty(self) -> bool:
+  def empty(self) -> bool:
     return self.top == None
 
 
 class _Node:
-  def __init__(self, data: int, min) -> None:
+  def __init__(self, data: int, min: int) -> None:
     self.data = data
     self.next = None
     self.min = min

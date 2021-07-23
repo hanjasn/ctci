@@ -21,7 +21,7 @@ class LinkedList:
     if self.head == None:
       self.head = self.tail
   
-  def get_size(self):
+  def get_size(self) -> int:
     return self.size
 
   def __str__(self) -> str:

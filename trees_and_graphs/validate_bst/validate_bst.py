@@ -48,20 +48,17 @@ class BinaryTreeNode:
     return self.size
   
   # Time: O(n)
-  # Space: O(logn) for a balanced tree
+  # Space: O(logn) for a balanced tree; O(n) otherwise
   def is_BST_with_dup(self) -> bool:
     return self._is_BST_with_dup(self, None, None)
 
-  def _is_BST_with_dup(self, node: 'BinaryTreeNode', min: T, max: T) -> bool:
+  def _is_BST_with_dup(self, node: 'BinaryTreeNode', min: int, max: int) -> bool:
     if node == None:
       return True
     
-    if (min != None and node.data <= min) or (max != None and node.data > max):
+    if (min != None and not min < node.data) or (max != None and not node.data <= max):
       return False
-    
-    if self._is_BST_with_dup(node.left, min, node.data) == False or self._is_BST_with_dup(node.right, node.data, max) == False:
-      return False
-    return True
+    return self._is_BST_with_dup(node.left, min, node.data) and self._is_BST_with_dup(node.right, node.data, max)
 
   # def is_BST_with_dup(self) -> bool:
   #   return self._is_BST_with_dup(self)[0]
@@ -86,36 +83,26 @@ class BinaryTreeNode:
   #   return [True, max(node.data, left[1], right[1])]
 
   # Time: O(n)
-  # Space: O(logn) for a balanced tree
+  # Space: O(logn) for a balanced tree; O(n) otherwise
   def is_BST(self) -> bool:
-    in_order = self.copy_BST(self)
+    in_order = self.copy_tree()
     for i in range(1, len(in_order)):
       if in_order[i] < in_order[i - 1]:
         return False
     return True
-   
-  def copy_BST(self, node: 'BinaryTreeNode') -> list:
+
+  def copy_tree(self) -> list:
     in_order = []
-    self._copy_BST(self, in_order)
+    self._copy_tree(self, in_order)
     return in_order
 
-  def _copy_BST(self, node: 'BinaryTreeNode', in_order: list) -> None:
+  def _copy_tree(self, node: 'BinaryTreeNode', in_order: list) -> None:
     if node == None:
       return
     
-    self._copy_BST(node.left, in_order)
+    self._copy_tree(node.left, in_order)
     in_order.append(node.data)
-    self._copy_BST(node.right, in_order)
+    self._copy_tree(node.right, in_order)
 
-  def print_in_order(self) -> str:
-    result = "[" + self._print_in_order(self)
-    result = result[0:-2] + "]"
-    return result
-
-  def _print_in_order(self, node: 'BinaryTreeNode') -> str:
-    result = ""
-    if node != None:
-      result += self._print_in_order(node.left)
-      result += str(node.data) + ", "
-      result += self._print_in_order(node.right)
-    return result
+  def print_tree(self) -> str:
+    return str(self.copy_tree())
