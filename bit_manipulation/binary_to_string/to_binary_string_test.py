@@ -1,8 +1,8 @@
 import unittest
-from solution import *
+from to_binary_string import *
 
 
-class PrintBinary(unittest.TestCase):
+class ToBinaryStringTest(unittest.TestCase):
   def setUp(self) -> None:
     self.sol = Solution()
   
@@ -24,12 +24,16 @@ class PrintBinary(unittest.TestCase):
   
   def test_5(self) -> None:
     num = 1
-    self.assertEqual("ERROR", self.sol.to_binary_string(num))
+    self.assertEqual("1.0", self.sol.to_binary_string(num))
 
   def test_6(self) -> None:
     num = 0
-    self.assertEqual("ERROR", self.sol.to_binary_string(num))
+    self.assertEqual("0.0", self.sol.to_binary_string(num))
   
   def test_7(self) -> None:
     num = 0.1
-    self.assertEqual("ERROR", self.sol.to_binary_string(num))
+    self.assertEqual("0.0001100110011001", self.sol.to_binary_string(num))
+  
+  def test_8(self) -> None:
+    num = 9.75
+    self.assertEqual("1001.11", self.sol.to_binary_string(num))
