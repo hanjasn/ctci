@@ -15,7 +15,7 @@ class Solution1:
   def length_longest_sequence(self, num: int) -> int:
     curr_length, prev_length, max_length = 0, 0, 1
     while num > 0:
-      if (num & 1) == 1:
+      if num & 1 == 1:
         curr_length += 1
       else:
         prev_length = 0 if (num & 2 == 0) else curr_length + 1
