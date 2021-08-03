@@ -3,6 +3,7 @@ Triple Step
 
 A child is running up a staircase with n steps and can hop either 1 step, 2 steps, or 3 steps at a time. Implement a method to count how many possible ways the child can run up the stairs. 
 """
+from typing import List
 
 
 # Time: O(n)
@@ -12,7 +13,7 @@ class Solution1:
     def triple_step(self, n: int) -> int:
         return self._triple_step(n, [0] * (n + 1))
 
-    def _triple_step(self, n: int, memoize: list) -> int:
+    def _triple_step(self, n: int, memoize: List[int]) -> int:
         if n < 0:
             return 0
         elif n == 0:
