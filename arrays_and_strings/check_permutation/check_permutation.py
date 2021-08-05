@@ -27,8 +27,7 @@ class Solution1:
 # Time: O(n*logn)
 # Space: O(logn)
 # Assume case sensitive, and white space counts
-# If the strings are not the same length, return false. Sort the strings and then compare them to determine if one is a
-# permutation of the other.
+# If the strings are not the same length, return false. Sort the strings and then compare them to determine if one is a permutation of the other.
 class Solution2:
   def check_permutation(self, s1, s2):
     if len(s1) != len(s2):

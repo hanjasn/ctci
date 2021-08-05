@@ -83,7 +83,7 @@ class BinaryTreeNode:
   #   return [True, max(node.data, left[1], right[1])]
 
   # Time: O(n)
-  # Space: O(logn) for a balanced tree; O(n) otherwise
+  # Space: O(n)
   def is_BST(self) -> bool:
     in_order = self.copy_tree()
     for i in range(1, len(in_order)):
