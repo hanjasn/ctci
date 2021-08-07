@@ -1,7 +1,7 @@
 from typing import List, TypeVar, Generic
 
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
 class LinkedList(Generic[T]):
@@ -12,7 +12,7 @@ class LinkedList(Generic[T]):
         if arr != None:
             for i in arr:
                 self.add(i)
-
+    
     def add(self, data: T) -> None:
         self.size += 1
 
@@ -23,7 +23,7 @@ class LinkedList(Generic[T]):
 
         if self.head == None:
             self.head = self.tail
-        
+    
     def add_left(self, data: T) -> None:
         self.size += 1
 
@@ -36,7 +36,7 @@ class LinkedList(Generic[T]):
 
     def get_size(self) -> int:
         return self.size
-
+    
     def __str__(self) -> str:
         result = ""
         node = self.head
